@@ -1,0 +1,22 @@
+{
+  "name": "laboratorio1",
+  "version": "1.0.0",
+  "description": "Laboratorio 1 seminario",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnyMMColque/Lab1.git"
+  },
+  "author": "Anahi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnyMMColque/Lab1/issues"
+  },
+  "homepage": "https://github.com/AnyMMColque/Lab1#readme",
+  "dependencies": {
+    "mustache": "^4.1.0"
+  }
+}
