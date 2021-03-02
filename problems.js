@@ -31,7 +31,7 @@ Dada una matriz de cadenas, devuelve otra matriz que contiene todas sus cadenas 
         }
         return vector;
     }
-//Funciones
+    //Funciones
     longCadena(cadena){
         var str=cadena;
         var long=0;
@@ -53,94 +53,109 @@ Dada una matriz de cadenas, devuelve otra matriz que contiene todas sus cadenas 
             }
         }
     }
-}
 /*PROBLEMA 2
 Escriba una función que invierta los caracteres entre paréntesis (posiblemente anidados) en la cadena de entrada*/
-invertir(cadena){
-    var cadOrigen = cadena;
-    var cantidadP = this.cantidadDeParent(cadena);
-    while(cantidadP > 0){
-        var invertido = "";
-        var cad=this.invertirP(cadena);
+    invertir(cadena){
+        var cadOrigen = cadena;
+        var cantidadP = this.cantidadDeParent(cadena);
+        while(cantidadP > 0){
+            var invertido = "";
+            var cad=this.invertirP(cadena);
+            var inicio=this.iniParent(cadena);
+            var final=this.finalParent(cadena);
+            for(var i=cad.length -1; i>=0; i--){   
+                invertido += cad[i];
+            }
+        for(var j=0; j<cadena.length;j++){
+            if(j>inicio){
+                var inicioC=cadena.substr(0,inicio);
+            }
+            else{
+            }
+            if(j>final){
+                var finalC=cadena.substr(final+1);
+            }
+            else{
+            }
+        }
+        if(cantidadP == 1 && cadOrigen[cadOrigen.length-1] == ')'){
+            var cadena1 = inicioC+invertido;
+        }
+        else{
+            var cadena1 = inicioC+invertido+finalC;
+        }   
+        cadena=cadena1;
+        cantidadP--;
+        } 
+        return [cadOrigen,cadena1];
+    }
+    //Funciones
+    invertCadena(cadena){
+        var regExp = /\(([^)]+)\)/; 
+        var cadena = regExp.exec(cadena);
+        return this.invertir(cadena);
+    }
+    cantidadDeParent(cadena){
+       var dato=0;  
+        for(var j=0;j<cadena.length;j++){
+            if(cadena[j]=="("){
+                dato=dato+1; 
+            }
+        }
+        return dato;
+    }
+    finalParent(cadena){
+        var dato1=0;
+        for(var j=0;j<cadena.length;j++){
+            if(cadena[j]==")"){
+                var pos=j;
+                return pos;
+                break; 
+            }
+        }
+    }
+    iniParent(cadena){
+        var pos=this.finalParent(cadena);
+        for( var i=pos; i>=0; i--){
+        if(cadena[i] =="("){
+            var ini = i;
+            return ini;
+            break;
+        }
+    }
+    }
+    invertirP(cadena){
+        var gt="";
         var inicio=this.iniParent(cadena);
         var final=this.finalParent(cadena);
-        for(var i=cad.length -1; i>=0; i--){   
-            invertido += cad[i];
-        }
-    for(var j=0; j<cadena.length;j++){
-        if(j>inicio){
-            var inicioC=cadena.substr(0,inicio);
-        }
-        else{
-        }
-        if(j>final){
-            var finalC=cadena.substr(final+1);
-        }
-        else{
+        for(var i=0; i<cadena.length;i++){
+            if(i==inicio ){
+                var dato3=cadena.substr(inicio+1,final-inicio-1);
+                return dato3;
+            } 
         }
     }
-    if(cantidadP == 1 && cadOrigen[cadOrigen.length-1] == ')'){
-        var cadena1 = inicioC+invertido;
-    }
-    else{
-        var cadena1 = inicioC+invertido+finalC;
-    }   
-    cadena=cadena1;
-    cantidadP--;
-    } 
-    return [cadOrigen,cadena1];
-}
-//Funciones
-invertCadena(cadena){
-    var regExp = /\(([^)]+)\)/; 
-    var cadena = regExp.exec(cadena);
-    return this.invertir(cadena);
-}
-cantidadDeParent(cadena){
-   var dato=0;  
-    for(var j=0;j<cadena.length;j++){
-        if(cadena[j]=="("){
-            dato=dato+1; 
+    verficar(cadena){
+        for (var i=0; i<cadena.length; i++){
+            if(cadena[i] == "(" || cadena[i] == ")")
+                return true;
         }
+        return false;
     }
-    return dato;
-}
-finalParent(cadena){
-    var dato1=0;
-    for(var j=0;j<cadena.length;j++){
-        if(cadena[j]==")"){
-            var pos=j;
-            return pos;
-            break; 
-        }
-    }
-}
-iniParent(cadena){
-    var pos=this.finalParent(cadena);
-    for( var i=pos; i>=0; i--){
-    if(cadena[i] =="("){
-        var ini = i;
-        return ini;
-        break;
-    }
-}
-}
-invertirP(cadena){
-    var gt="";
-    var inicio=this.iniParent(cadena);
-    var final=this.finalParent(cadena);
-    for(var i=0; i<cadena.length;i++){
-        if(i==inicio ){
-            var dato3=cadena.substr(inicio+1,final-inicio-1);
-            return dato3;
+/*PROBLEMA 3
+Dada una cadena, averigua si sus caracteres se pueden reorganizar para formar un palíndromo*/
+    palindrome(cadena){
+        var t=cadena.length;
+        //si la cadena esta vacia no es palindromo
+        if(t==0){
+            return false;
         } 
+        for(var i=0;i<t/2;i++){
+            if(cadena[i] ==cadena[t-1-i]){
+                return false;
+            }
+        }
+        return true;
     }
-}
-verficar(cadena){
-    for (var i=0; i<cadena.length; i++){
-        if(cadena[i] == "(" || cadena[i] == ")")
-            return true;
-    }
-    return false;
 }
 export{cadena1,CadenaMan}
